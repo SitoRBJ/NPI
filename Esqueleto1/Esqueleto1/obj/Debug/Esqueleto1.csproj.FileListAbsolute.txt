@@ -1,0 +1,13 @@
+c:\users\sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\bin\Debug\Esqueleto1.exe.config
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\bin\Debug\Esqueleto1.exe
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\bin\Debug\Esqueleto1.pdb
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\obj\Debug\Esqueleto1.csprojResolveAssemblyReference.cache
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\obj\Debug\MainWindow.baml
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\obj\Debug\MainWindow.g.cs
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\obj\Debug\App.g.cs
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\obj\Debug\Esqueleto1_MarkupCompile.cache
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\obj\Debug\Esqueleto1.g.resources
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\obj\Debug\Esqueleto1.Properties.Resources.resources
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\obj\Debug\Esqueleto1.csproj.GenerateResource.Cache
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\obj\Debug\Esqueleto1.exe
+C:\Users\Sitote\documents\visual studio 2013\Projects\Esqueleto1\Esqueleto1\obj\Debug\Esqueleto1.pdb
