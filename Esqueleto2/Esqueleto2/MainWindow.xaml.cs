@@ -124,7 +124,7 @@ namespace Esqueleto2
                         angulo = Math.Atan(division);
                         grados = ((angulo * 180) / Math.PI);
 
-                        if (g_entrada == 0)
+                        if (g_entrada == 0 || g_entrada >90)
                         {
                             g_entrada = 20;
                         }
