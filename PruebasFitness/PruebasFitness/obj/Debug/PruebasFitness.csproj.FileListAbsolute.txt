@@ -1,0 +1,13 @@
+c:\users\sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\bin\Debug\PruebasFitness.exe.config
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\obj\Debug\PruebasFitness.csprojResolveAssemblyReference.cache
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\obj\Debug\MainWindow.baml
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\obj\Debug\MainWindow.g.cs
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\obj\Debug\App.g.cs
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\obj\Debug\PruebasFitness_MarkupCompile.cache
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\obj\Debug\PruebasFitness.g.resources
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\obj\Debug\PruebasFitness.Properties.Resources.resources
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\obj\Debug\PruebasFitness.csproj.GenerateResource.Cache
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\bin\Debug\PruebasFitness.exe
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\bin\Debug\PruebasFitness.pdb
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\obj\Debug\PruebasFitness.exe
+C:\Users\Sitote\documents\visual studio 2013\Projects\PruebasFitness\PruebasFitness\obj\Debug\PruebasFitness.pdb
