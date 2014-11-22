@@ -67,6 +67,7 @@ namespace PruebasFitness
             {
                 sensor.SkeletonStream.Enable();                                     // Activamos el Stream de Skeleton e iniciamos su captura
                 sensor.Start();
+                sensor.ColorStream.Enable();                                        //NUEVO
             }
             catch
             {
@@ -75,7 +76,32 @@ namespace PruebasFitness
             }
 
             sensor.SkeletonFrameReady += sensor_SkeletonFrameReady;                 // Llamamos a la funcion de controlador de eventos o Event Handler, dado que hemos creado uno del tipo Load, es decir
+            sensor.ColorFrameReady += sensor_ColorFrameReady;                       //NUEVO
         }
+
+        void sensor_ColorFrameReady(object sender, Microsoft.Kinect.ColorImageFrameReadyEventArgs e)
+        {
+            using (ColorImageFrame frameImagen = e.OpenColorImageFrame())
+            {
+                {
+                    if (frameImagen == null) return;
+                }
+                byte[] datosColor = new byte[frameImagen.PixelDataLength];
+
+                frameImagen.CopyPixelDataTo(datosColor);
+
+                mostrarVideo.Source= BitmapSource.Create(
+                    frameImagen.Width, frameImagen.Height,
+                    96,
+                    96,
+                    PixelFormats.Bgr32,
+                    null,
+                    datosColor,
+                    frameImagen.Width * frameImagen.BytesPerPixel
+                    );
+                }
+        }
+        
 
 
 

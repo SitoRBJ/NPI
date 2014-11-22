@@ -1,15 +1,16 @@
 ﻿<Window x:Class="PruebasFitness.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="660" Width="800" Loaded="Window_Loaded_1">
+        Title="MainWindow" Height="1050" Width="1680" Loaded="Window_Loaded_1">
     <Grid Margin="10,150,0,0">
         <Grid.ColumnDefinitions>
 
         </Grid.ColumnDefinitions>
-        <Canvas x:Name="canvasEsqueleto" HorizontalAlignment="Center" Height="309" Margin="225,-5,284,0" VerticalAlignment="Top" Width="273"/>
+        <Canvas x:Name="canvasEsqueleto" HorizontalAlignment="Center" Height="738" Margin="1051,5,198,0" VerticalAlignment="Top" Width="413"/>
         <TextBlock Name="caja1" Text =" Bienvenido" FontSize="35" HorizontalAlignment="Center" TextAlignment="Center" Height="62" Margin="-7,-148,2,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="787" Grid.ColumnSpan="2"/>
         <TextBlock Name ="caja2" Text="Espera con los brazos relajados a que comience el ejercicio" FontSize="25" TextAlignment="Center" HorizontalAlignment="Center" Height="76" Margin="-8,-81,2,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="788" Grid.ColumnSpan="2"/>
-        <TextBlock Name="caja3"  HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="25" Margin="15,390,5,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="80" Width="762"/>
+        <TextBlock Name="caja3"  HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="25" Margin="402,780,498,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="80" Width="762"/>
+        <Image x:Name="mostrarVideo" HorizontalAlignment="Left" Height="743" Margin="10,0,0,0" VerticalAlignment="Top" Width="760"/>
 
     </Grid>
 </Window>
