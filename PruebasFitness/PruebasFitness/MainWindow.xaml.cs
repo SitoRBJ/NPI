@@ -31,19 +31,13 @@ namespace PruebasFitness
         bool ejer5_realizado = false;
         bool condicion_aux = false;
         bool dif_elegida = false;
+        bool primer_tiempo = false;
         double dificultad_de_ejercicio;
-        int[] errores;
-        int error1 = 0;
-        int error2 = 0;
-        int error3 = 0;
-        int error4 = 0;
-        int error5 = 0;
-        int error6 = 0;
-        int error7 = 0;
-        int error8 = 0;
-        int error9 = 0;
-        int error10 = 0;
-        int error11 = 0;
+        TimeSpan[] tiempos;
+        
+        DateTime inicio;
+        DateTime ejer1, ejer2,ejer3, ejer4, ejer5;
+        TimeSpan tiempo1, tiempo2, tiempo3, tiempo4, tiempo5;
                     
         public MainWindow()
         {
@@ -61,7 +55,7 @@ namespace PruebasFitness
             }
 
             sensor = KinectSensor.KinectSensors.FirstOrDefault();                   // Si detecta uno o mas dispositivos kinect almacenamos en la variable sensor el primer kinect detectado
-            errores = new int[5];
+            tiempos = new TimeSpan[5];
 
             try
             {
@@ -87,8 +81,10 @@ namespace PruebasFitness
                     if (frameImagen == null) return;
                 }
                 byte[] datosColor = new byte[frameImagen.PixelDataLength];
+  
 
                 frameImagen.CopyPixelDataTo(datosColor);
+          
 
                 mostrarVideo.Source= BitmapSource.Create(
                     frameImagen.Width, frameImagen.Height,
@@ -136,7 +132,7 @@ namespace PruebasFitness
                     if (dif_elegida == false)                                                   // Hasta que no se elija la dificultad del ejercicio no comenzaremos
                     {
                        dificultad_de_ejercicio= elegir_dificultad(usuario);                     // Elegimos dificultad                                       
-
+                       
                     }
                     else{
                             if (ejer1_realizado == false) { posicion1(usuario, dificultad_de_ejercicio); }          //Hasta que no se realice el ejercicio 1 no pasa al 2
@@ -204,6 +200,12 @@ namespace PruebasFitness
         {
             double dificultad=20;                           //Dificultad de los ejercicios, por defecto 20
             int contador_de_solucion = 0;                   //Variable que nos valdra para controlar la correcta realizacion del ejercicio
+
+            if (primer_tiempo == false)
+            {
+                inicio = DateTime.Now;
+                primer_tiempo = true;
+            }
 
             String ejercicio = "Ejercicio 1";                                                                                   //Mostramos por pantalla el ejercicio que es y como se realiza
             String instrucciones = "Con los brazos en cruz alzar hacia atras la pierna izquierda a partir de la rodilla";
@@ -285,7 +287,7 @@ namespace PruebasFitness
                 agregarLinea(esqueleto.Joints[JointType.KneeLeft], esqueleto.Joints[JointType.AnkleLeft], 1);
                 agregarLinea(esqueleto.Joints[JointType.AnkleLeft], esqueleto.Joints[JointType.FootLeft], 1);
                 contador_de_solucion = 0;                                                                       //Reiniciamos el contador de solucion porque el ejrcicio no esta bien
-                error1++;                                                                                       //aumentamos el contador de error
+               
             }
 
             // A partir de aqui dibujamos los brazos, que estaran correctamente situados si estan en cruz.
@@ -323,7 +325,7 @@ namespace PruebasFitness
                 agregarLinea(esqueleto.Joints[JointType.ElbowRight], esqueleto.Joints[JointType.WristRight], 1);
                 agregarLinea(esqueleto.Joints[JointType.WristRight], esqueleto.Joints[JointType.HandRight], 1);
                 contador_de_solucion = 0;                                                                               //Reiniciamos el contador de solucion porque el ejrcicio no esta bien
-                error2++;                                                                                               //aumentamos el contador de error
+                
             }
 
             // Dibujamos el brazo izquierdo siguiendo el mismo proceso que en el derecho
@@ -358,13 +360,20 @@ namespace PruebasFitness
                 agregarLinea(esqueleto.Joints[JointType.ElbowLeft], esqueleto.Joints[JointType.WristLeft], 1);
                 agregarLinea(esqueleto.Joints[JointType.WristLeft], esqueleto.Joints[JointType.HandLeft], 1);
                 contador_de_solucion = 0;                                                                                   //Reiniciamos el contador de solucion porque el ejrcicio no esta bien
-                error3++;                                                                                                   //aumentamos el contador de error
+                                                                                                                   //aumentamos el contador de error
             }
 
             if (contador_de_solucion == 3)                                  //Si el contador de solucion es correcto damos la señal para ejecutar el siguiente ejercicio
             {              
                 ejer1_realizado = true;
-                errores[0] = (error1 + error2 + error3) / 10;             // almacenamos los errores en un vector
+                ejer1 = DateTime.Now;
+                tiempo1=ejer1-inicio;             // almacenamos los errores en un vector
+
+                tiempos[0] = tiempo1;
+
+                String frase1 = "Ejercicio 1: \r\n REALIZADO";
+                Realizado1.Text = frase1;
+               
             }
         }
 
@@ -459,7 +468,7 @@ namespace PruebasFitness
                 agregarLinea(esqueleto.Joints[JointType.KneeRight], esqueleto.Joints[JointType.AnkleRight], 1);
                 agregarLinea(esqueleto.Joints[JointType.AnkleRight], esqueleto.Joints[JointType.FootRight], 1);
                 contador_de_solucion = 0;                                                                           //Reiniciamos el contador de solucion dado que no es correcta la realizacion
-                error4++;                                                                                           //contamos los errores
+              
             }
 
             // A partir de aqui dibujamos los brazos, que estaran correctamente situados si estan en cruz. Esta parte no es necesaria.
@@ -495,7 +504,7 @@ namespace PruebasFitness
                 agregarLinea(esqueleto.Joints[JointType.ElbowRight], esqueleto.Joints[JointType.WristRight], 1);
                 agregarLinea(esqueleto.Joints[JointType.WristRight], esqueleto.Joints[JointType.HandRight], 1);
                 contador_de_solucion = 0;                                                                                   //reiniciamos el contador de solucion
-                error5++;                                                                                                   //aumentamos los errores 
+               
             }
 
             // Dibujamos el brazo izquierdo siguiendo el mismo proceso que en el derecho
@@ -530,13 +539,17 @@ namespace PruebasFitness
                 agregarLinea(esqueleto.Joints[JointType.ElbowLeft], esqueleto.Joints[JointType.WristLeft], 1);
                 agregarLinea(esqueleto.Joints[JointType.WristLeft], esqueleto.Joints[JointType.HandLeft], 1);
                 contador_de_solucion = 0;                                                                       //reiniciamos el contador de solucion
-                error6++;                                                                                       //aumentamos los errores
+               
             }
 
             if (contador_de_solucion == 3)                                                                      //Si el ejercicio se ha llevado a cabo correctamente avisamos al siguiente
             {
                 ejer2_realizado = true;
-                errores[1] = (error4 + error5 + error6) / 10;                                                   //almacenamos los errores en un vector
+                ejer2 = DateTime.Now;
+                tiempo2 = ejer2 - ejer1;
+                tiempos[1] = tiempo2;
+                String frase1 = "Ejercicio 2: \r\n REALIZADO";
+                Realizado2.Text = frase1;
             }
         }
 
@@ -625,13 +638,17 @@ namespace PruebasFitness
                 agregarLinea(esqueleto.Joints[JointType.WristRight], esqueleto.Joints[JointType.HandRight], 1);
 
                 contador_de_solucion = 0;                                                       //reiniciamos el contador de solucion
-                error7++;                                                                       // aumentamos el contador de error
+                                                                               // aumentamos el contador de error
             }
 
             if (contador_de_solucion == 1)                                                      //Si esta bien realizado el ejercicio avisamos al siguiente
             {
                 ejer3_realizado = true;
-                errores[2] = (error7) / 10;                                                     //almacenamos los errores
+                ejer3 = DateTime.Now;                                                    //almacenamos los errores
+                tiempo3 = ejer3 - ejer2;
+                tiempos[2] = tiempo3;
+                String frase1 = "Ejercicio 3: \r\n REALIZADO";
+                Realizado3.Text = frase1;
             }
         }
 
@@ -717,7 +734,7 @@ namespace PruebasFitness
                 agregarLinea(esqueleto.Joints[JointType.WristRight], esqueleto.Joints[JointType.HandRight], 1);
 
                 contador_de_solucion = 0;                                                               //reiniciamos el contador de solucion
-                error8++;                                                                               //contamos los errores
+                
             }
 
             Joint jointSC = esqueleto.Joints[JointType.ShoulderCenter];
@@ -755,12 +772,17 @@ namespace PruebasFitness
                 agregarLinea(esqueleto.Joints[JointType.Head], esqueleto.Joints[JointType.ShoulderCenter], 1);
                 agregarLinea(esqueleto.Joints[JointType.ShoulderCenter], esqueleto.Joints[JointType.Spine], 1);
                 contador_de_solucion = 0;                                                                           //reiniciamos el contador de solucion
-                error9++;                                                                                           //contamos los errores
+                
             }
             if (contador_de_solucion == 2)                                          //Si se realiza el ejercicio avisamos al siguiente
             {
                 ejer4_realizado = true;
-                errores[3] = (error8+error9)/10;                                    //almacenamos los errores
+                ejer4 = DateTime.Now;
+                tiempo4 = ejer4 - ejer3;
+                tiempos[3] = tiempo4;
+                String frase1 = "Ejercicio 4: \r\n REALIZADO";
+                Realizado4.Text = frase1;
+               
             }
         }
 
@@ -846,8 +868,7 @@ namespace PruebasFitness
                 agregarLinea(esqueleto.Joints[JointType.WristRight], esqueleto.Joints[JointType.HandRight], 1);
 
                 contador_de_solucion = 0;                                                                                    //reiniciamos el contador de solucion
-                error10++;                                                                                                    //contamos los errores
-
+              
             }
 
             Joint jointSC = esqueleto.Joints[JointType.ShoulderCenter];
@@ -886,12 +907,15 @@ namespace PruebasFitness
                 agregarLinea(esqueleto.Joints[JointType.Head], esqueleto.Joints[JointType.ShoulderCenter], 1);
                 agregarLinea(esqueleto.Joints[JointType.ShoulderCenter], esqueleto.Joints[JointType.Spine], 1);
                 contador_de_solucion = 0;                                                                           //reiniciamos el contador de solucion
-                error11++;                                                                                          //contamos los errores
-            }
+            }   
             if (contador_de_solucion == 2)                                                                      //avisamos de que el ultimo ejercicio a finalizado
             {
                 ejer5_realizado = true;
-                errores[4] = (error10 + error11)/10;                                                             //almacenamos los errores
+                ejer5 = DateTime.Now;
+                tiempo5 = ejer5 - ejer4;
+                tiempos[4] = tiempo5;
+                String frase1 = "Ejercicio 5: \r\n REALIZADO";
+                Realizado5.Text = frase1;
             }
         }
 
@@ -925,6 +949,7 @@ namespace PruebasFitness
                 dif_elegida = true;                                                             //avisamos de que hemos elegido la dificultad
                 caja1.Text = principiante;
                 caja2.Text = "";
+               
                 return 15;
             }
             if (manoI < hombro && manoD > hombro)                                               //Si levantamos la mano derecha optamos por una dificultad intermedia
@@ -933,6 +958,7 @@ namespace PruebasFitness
                 caja1.Text = intermedio;
                 caja2.Text = "";
                 dif_elegida = true;                                                             //avisamos de que hemos elegido la dificultad
+                
                 return 10;
             } 
             if (manoI > hombro && manoD > hombro)                                               //Si levantamos las dos manos la dificultad sera avanzada, dentro de lo que cabe, no es muy dificil
@@ -941,6 +967,7 @@ namespace PruebasFitness
                 caja1.Text = avanzada;
                 caja2.Text = "";
                 dif_elegida = true;                                                             //avisamos de que hemos elegido la dificultad
+               
                 return 5;
             }
             return 15;                                           //devolvemos por defecto un valor para validar el metodo, pero se llamara de nuevo hasta que no se elija una dificultad gracias a dif_elegida
@@ -955,8 +982,10 @@ namespace PruebasFitness
             String mensaje_elige = " Para iniciar la rutina levanta la mano izquierda, para salir del programa levanta la mano derecha ";
             String resuelto = " ¡ Bien Hecho !";
 
+            
+
             caja1.Text = resuelto;
-            caja2.Text = string.Format("errores de Ejercicio 1: {0} Ejercicio 2: {1} Ejercicio 3: {2} Ejercicio 4: {3} Ejercicio 5: {4}", errores[0], errores[1], errores[2], errores[3], errores[4]);
+            caja2.Text = string.Format("Tiempos de Ejercicio 1: {0:ss}s  Ejercicio 2:  {1:ss}s Ejercicio 3:  {2:ss}s Ejercicio 4: {3:ss}s Ejercicio 5: {4:ss}s", tiempos[0], tiempos[1], tiempos[2], tiempos[3], tiempos[4]);
             caja3.Text = mensaje_elige;
 
             //OPCIONES PARA ELEGIR COMO CONTINUAR
@@ -988,24 +1017,15 @@ namespace PruebasFitness
                     ejer3_realizado = false;
                     ejer4_realizado = false;
                     ejer5_realizado = false;
-                    error1 = 0;
-                    error2 = 0;
-                    error3 = 0;
-                    error4 = 0;
-                    error5 = 0;
-                    error6 = 0;
-                    error7 = 0;
-                    error8 = 0;
-                    error9 = 0;
-                    error10 = 0;
-                    error11 = 0;
-                    condicion_aux = false;                
-
-                    for (int i = 0; i < 5; i++)
-                    {
-                        errores[i] = 0;
-                    }
-
+                    primer_tiempo = false;
+                    
+                    condicion_aux = false;
+                    Realizado1.Text = "";
+                    Realizado2.Text = "";
+                    Realizado3.Text = "";
+                    Realizado4.Text = "";
+                    Realizado5.Text = "";
+                  
                 }
                 if (manoD > hombro)                         // salimos del porgrama al levantar la mano derecha
                 {
